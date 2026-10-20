@@ -1,0 +1,454 @@
+/*=========================================================
+   BUDDYVERSE — SHARED NAVIGATION
+   Floating glass button + full-screen navigation overlay
+   ========================================================= */
+
+:root {
+  --bv-nav-text: #f7f4fb;
+  --bv-nav-muted: rgba(247, 244, 251, 0.58);
+  --bv-nav-accent: #d8b9f0;
+  --bv-nav-panel: rgba(15, 17, 29, 0.96);
+  --bv-nav-border: rgba(255, 255, 255, 0.13);
+}
+
+/* ---------- Floating Menu Button ---------- */
+
+.bv-menu-button {
+  position: fixed;
+  top: max(18px, env(safe-area-inset-top));
+  right: max(18px, env(safe-area-inset-right));
+  z-index: 9000;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  min-height: 46px;
+  padding: 0 17px;
+
+  color: var(--bv-nav-text);
+  background: rgba(22, 25, 42, 0.62);
+
+  border: 1px solid rgba(255, 255, 255, 0.19);
+  border-radius: 999px;
+
+  font: 600 13px/1.2 system-ui, sans-serif;
+  letter-spacing: 0.08em;
+
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease,
+    opacity 180ms ease;
+}
+
+.bv-menu-button[hidden],
+.bv-nav-overlay[hidden] {
+  display: none !important;
+}
+
+.bv-menu-button:hover {
+  background: rgba(42, 43, 65, 0.82);
+  border-color: rgba(255, 255, 255, 0.32);
+}
+
+.bv-menu-button:active {
+  transform: scale(0.97);
+}
+
+.bv-menu-button:focus-visible,
+.bv-nav-close:focus-visible,
+.bv-nav-link:focus-visible {
+  outline: 2px solid var(--bv-nav-accent);
+  outline-offset: 5px;
+}
+
+/* Three-line menu icon */
+
+.bv-menu-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+
+  width: 17px;
+}
+
+.bv-menu-icon span {
+  display: block;
+  width: 100%;
+  height: 1.5px;
+
+  background: currentColor;
+  border-radius: 2px;
+}
+
+.bv-menu-icon span:nth-child(2) {
+  width: 70%;
+  margin-left: auto;
+}
+
+/* ---------- Overlay ---------- */
+
+.bv-nav-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+  height: 100dvh;
+
+  padding:
+    max(25px, env(safe-area-inset-top))
+    max(24px, env(safe-area-inset-right))
+    max(25px, env(safe-area-inset-bottom))
+    max(24px, env(safe-area-inset-left));
+
+  color: var(--bv-nav-text);
+  background: var(--bv-nav-panel);
+
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+
+  overflow-y: auto;
+  overscroll-behavior: contain;
+
+  opacity: 1;
+  visibility: visible;
+
+  transition:
+    opacity 220ms ease,
+    visibility 220ms ease;
+}
+
+.bv-nav-overlay[hidden] {
+  display: none !important;
+}
+
+/* ---------- Overlay Header ---------- */
+
+.bv-nav-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+
+  padding-bottom: 24px;
+
+  border-bottom: 1px solid var(--bv-nav-border);
+}
+
+.bv-nav-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.bv-nav-brand-name {
+  font: 700 13px/1.2 system-ui, sans-serif;
+  letter-spacing: 0.2em;
+}
+
+.bv-nav-brand-note {
+  color: var(--bv-nav-muted);
+
+  font: 400 11px/1.4 system-ui, sans-serif;
+  letter-spacing: 0.04em;
+}
+
+.bv-nav-close {
+  display: grid;
+  place-items: center;
+
+  flex: 0 0 43px;
+  width: 43px;
+  min-width: 43px;
+  height: 43px;
+  min-height: 43px;
+
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  color: var(--bv-nav-text);
+  background: rgba(255, 255, 255, 0.055);
+
+  border: 1px solid var(--bv-nav-border);
+  border-radius: 50%;
+
+  font: 300 25px/1 Arial, sans-serif;
+  text-align: center;
+
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  box-shadow: none;
+
+  transition:
+    background-color 180ms ease,
+    transform 180ms ease;
+}
+
+.bv-nav-close:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.bv-nav-close:active {
+  transform: scale(0.94);
+}
+
+/* ---------- Navigation Content ---------- */
+
+.bv-nav-content {
+  width: 100%;
+  max-width: 760px;
+
+  margin: auto;
+  padding: 30px 0;
+}
+
+.bv-nav-eyebrow {
+  margin: 0 0 22px;
+
+  color: var(--bv-nav-muted);
+
+  font: 500 10px/1.4 system-ui, sans-serif;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+/* ---------- Vertical Link List ---------- */
+
+.bv-nav-list {
+  display: flex;
+  flex-direction: column;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.bv-nav-item {
+  margin: 0;
+  padding: 0;
+
+  border-bottom: 1px solid var(--bv-nav-border);
+}
+
+.bv-nav-link {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 13px;
+
+  width: 100%;
+  min-height: 62px;
+  padding: 12px 4px;
+
+  color: var(--bv-nav-muted);
+  text-align: left;
+  text-decoration: none;
+
+  -webkit-tap-highlight-color: transparent;
+
+  transition:
+    color 180ms ease,
+    padding 180ms ease,
+    background-color 180ms ease;
+}
+
+.bv-nav-number {
+  color: rgba(247, 244, 251, 0.36);
+
+  font: 400 11px/1.4 system-ui, sans-serif;
+  letter-spacing: 0.08em;
+
+  transition: color 180ms ease;
+}
+
+.bv-nav-title {
+  min-width: 0;
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(19px, 3.5vw, 25px);
+  font-weight: 400;
+  line-height: 1.3;
+
+  overflow-wrap: anywhere;
+
+  transition:
+    font-size 180ms ease,
+    color 180ms ease;
+}
+
+.bv-nav-arrow {
+  color: transparent;
+
+  font: 400 18px/1 system-ui, sans-serif;
+
+  transform: translateX(-5px);
+
+  transition:
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+/* Hover is an enhancement, never a requirement. */
+
+.bv-nav-link:hover {
+  color: var(--bv-nav-text);
+  padding-left: 10px;
+}
+
+.bv-nav-link:hover .bv-nav-number {
+  color: var(--bv-nav-accent);
+}
+
+.bv-nav-link:hover .bv-nav-arrow {
+  color: var(--bv-nav-accent);
+  transform: translateX(0);
+}
+
+/* Current page */
+
+.bv-nav-link[aria-current="page"] {
+  color: var(--bv-nav-text);
+  padding-left: 10px;
+}
+
+.bv-nav-link[aria-current="page"] .bv-nav-number {
+  color: var(--bv-nav-accent);
+}
+
+.bv-nav-link[aria-current="page"] .bv-nav-title {
+  color: var(--bv-nav-accent);
+  font-size: clamp(22px, 4vw, 29px);
+}
+
+.bv-nav-link[aria-current="page"] .bv-nav-arrow {
+  color: var(--bv-nav-accent);
+  transform: translateX(0);
+}
+
+/* ---------- Overlay Footer ---------- */
+
+.bv-nav-footer {
+  width: 100%;
+  max-width: 760px;
+
+  margin: 0 auto;
+  padding-top: 19px;
+
+  border-top: 1px solid var(--bv-nav-border);
+
+  color: var(--bv-nav-muted);
+
+  font: 400 10px/1.6 system-ui, sans-serif;
+  letter-spacing: 0.14em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* ---------- Freeze Page While Menu Is Open ---------- */
+
+html.bv-nav-open {
+  overflow: hidden !important;
+  overscroll-behavior: none;
+}
+
+body.bv-nav-open {
+  overflow: hidden !important;
+  overscroll-behavior: none;
+}
+
+body.bv-nav-open .bv-nav-pause-target,
+body.bv-nav-open .bv-nav-pause-target * {
+  animation-play-state: paused !important;
+}
+
+/*
+  JavaScript-driven effects can listen for the navigation
+  events emitted by script.js. CSS animations are paused here.
+*/
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 520px) {
+  .bv-menu-button {
+    top: max(14px, env(safe-area-inset-top));
+    right: max(14px, env(safe-area-inset-right));
+
+    min-height: 43px;
+    padding: 0 14px;
+
+    font-size: 11px;
+  }
+
+  .bv-nav-overlay {
+    padding:
+      max(20px, env(safe-area-inset-top))
+      max(20px, env(safe-area-inset-right))
+      max(20px, env(safe-area-inset-bottom))
+      max(20px, env(safe-area-inset-left));
+  }
+
+  .bv-nav-header {
+    padding-bottom: 19px;
+  }
+
+  .bv-nav-content {
+    padding: 24px 0;
+  }
+
+  .bv-nav-eyebrow {
+    margin-bottom: 15px;
+  }
+
+  .bv-nav-link {
+    grid-template-columns: 29px minmax(0, 1fr) auto;
+    gap: 10px;
+
+    min-height: 57px;
+    padding: 11px 2px;
+  }
+
+  .bv-nav-title {
+    font-size: 20px;
+  }
+
+  .bv-nav-link[aria-current="page"] .bv-nav-title {
+    font-size: 23px;
+  }
+}
+
+/* ---------- Reduced Motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .bv-menu-button,
+  .bv-nav-close,
+  .bv-nav-link,
+  .bv-nav-title,
+  .bv-nav-number,
+  .bv-nav-arrow,
+  .bv-nav-overlay {
+    transition: none !important;
+  }
+}

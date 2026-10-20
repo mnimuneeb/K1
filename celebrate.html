@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#17132d">
+
+  <title>A Little Celebration 💜</title>
+
+  <style>
+    :root {
+      --pink: #f3b5d1;
+      --purple: #c5a3ff;
+      --text: #fff8ff;
+      --muted: #ded4ec;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 28px 16px;
+      display: grid;
+      place-items: center;
+      overflow-x: hidden;
+
+      color: var(--text);
+      text-align: center;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+
+      background:
+        radial-gradient(
+          ellipse at 50% 25%,
+          #30244c 0%,
+          #19152c 48%,
+          #0d0c18 100%
+        );
+
+      transition: background 1.8s ease;
+    }
+
+    body.party {
+      background:
+        radial-gradient(
+          ellipse at 50% 20%,
+          #49365f 0%,
+          #211932 50%,
+          #100e1c 100%
+        );
+    }
+
+    main {
+      position: relative;
+      z-index: 2;
+      width: min(100%, 620px);
+      padding: 90px 8px 30px;
+    }
+
+    .eyebrow {
+      margin: 0 0 14px;
+      color: #d7c1f7;
+      font-size: 0.76rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      font-size: clamp(1.8rem, 7vw, 2.8rem);
+      line-height: 1.2;
+      font-weight: 650;
+    }
+
+    .copy {
+      max-width: 500px;
+      margin: 0 auto 24px;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    .tiny-note {
+      margin-top: 24px;
+      color: #bcb0d1;
+      font-size: 0.84rem;
+      line-height: 1.6;
+    }
+
+    /* ---------- STAGES ---------- */
+
+    .stage {
+      display: none;
+      opacity: 0;
+    }
+
+    .stage.active {
+      display: block;
+      animation: stageFade 1.2s ease forwards;
+    }
+
+    @keyframes stageFade {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ---------- BUTTONS ---------- */
+
+    button,
+    .next-link {
+      display: inline-block;
+      margin: 6px;
+      padding: 14px 23px;
+      min-height: 48px;
+
+      border: 1px solid transparent;
+      border-radius: 999px;
+
+      color: #281b38;
+      background: linear-gradient(
+        120deg,
+        #f6cde0,
+        #d9c8ff
+      );
+
+      font: 650 0.98rem/1.3 system-ui, sans-serif;
+      text-decoration: none;
+      cursor: pointer;
+
+      box-shadow: 0 5px 20px #0002;
+
+      transition:
+        background 0.3s ease,
+        transform 0.3s ease,
+        opacity 0.3s ease;
+    }
+
+    button:hover,
+    .next-link:hover {
+      transform: translateY(-2px);
+    }
+
+    button:focus-visible,
+    .next-link:focus-visible {
+      outline: 2px solid white;
+      outline-offset: 4px;
+    }
+
+    button:disabled {
+      opacity: 0.65;
+      cursor: default;
+      transform: none;
+    }
+
+    .secondary {
+      color: #f4eafa;
+      background: #ffffff0c;
+      border-color: #ffffff30;
+      box-shadow: none;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* ---------- SUBTLE BACKGROUND DETAILS ---------- */
+
+    .glow {
+      position: fixed;
+      top: 8%;
+      left: 50%;
+      width: 220px;
+      height: 220px;
+      transform: translateX(-50%);
+      border-radius: 50%;
+      background: #a87bdb12;
+      filter: blur(35px);
+      pointer-events: none;
+    }
+
+    .sparkles {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .sparkles span {
+      position: absolute;
+      color: #ead9ff;
+      opacity: 0.3;
+      animation: gentleTwinkle 5s ease-in-out infinite alternate;
+    }
+
+    @keyframes gentleTwinkle {
+      from {
+        opacity: 0.12;
+      }
+
+      to {
+        opacity: 0.48;
+      }
+    }
+
+    /* ---------- REAL CAKE IMAGE ---------- */
+
+    .cake-scene {
+      position: relative;
+      width: min(100%, 440px);
+      min-height: 220px;
+      margin: 24px auto 28px;
+
+      display: grid;
+      place-items: center;
+    }
+
+    .cake-photo {
+      display: block;
+      width: 40%;
+      max-height: 250px;
+      object-fit: contain;
+
+      border-radius: 12px;
+
+      opacity: 0;
+      transform: translateY(8px) scale(0.985);
+
+      filter: drop-shadow(0 15px 30px #0004);
+
+      transition:
+        opacity 1.6s ease,
+        transform 1.6s ease;
+    }
+
+    .cake-photo.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .cake-placeholder {
+      width: 100%;
+      min-height: 210px;
+      padding: 24px;
+
+      display: grid;
+      place-items: center;
+
+      border: 1px dashed #ffffff35;
+      border-radius: 14px;
+
+      color: #d9c9ec;
+      background: #ffffff06;
+
+      line-height: 1.8;
+    }
+
+    .cake-placeholder strong {
+      display: block;
+      margin-bottom: 8px;
+      color: #f5eaff;
+    }
+
+    /*
+      This is a subtle visual cutting effect.
+      It doesn't physically split the photograph.
+    */
+
+    .cutting-knife {
+      position: absolute;
+      top: 20%;
+      left: 52%;
+
+      width: 5px;
+      height: 0;
+
+      border-radius: 4px;
+      background: linear-gradient(
+        to bottom,
+        #FFFFFF,
+        #C0C0C0
+      );
+
+      box-shadow: 0 0 5px #ffffff55;
+
+      opacity: 0;
+      transform: rotate(18deg);
+      transform-origin: top center;
+
+      pointer-events: none;
+    }
+
+    .cake-scene.cutting .cutting-knife {
+      animation: gentleCut 2.2s ease-in-out forwards;
+    }
+
+    @keyframes gentleCut {
+      0% {
+        height: 0;
+        opacity: 0;
+      }
+
+      18% {
+        height: 0;
+        opacity: 0.85;
+      }
+
+      55% {
+        height: 95px;
+        opacity: 0.85;
+      }
+
+      85% {
+        height: 95px;
+        opacity: 0.45;
+      }
+
+      100% {
+        height: 95px;
+        opacity: 0;
+      }
+    }
+
+    /* ---------- CANDLE ---------- */
+
+    .candle-flame {
+      position: absolute;
+      top: 16%;
+      left: 49%;
+
+      width: 10px;
+      height: 17px;
+
+      border-radius: 50% 50% 50% 0;
+
+      background: radial-gradient(
+        circle at 60% 65%,
+        #fffbe0 0 15%,
+        #ffd18b 40%,
+        #ff9d73 80%
+      );
+
+      box-shadow: 0 0 16px #ffc37a66;
+
+      transform: translateX(-50%) rotate(-45deg);
+
+      animation: flameFlicker 1.6s ease-in-out infinite alternate;
+    }
+
+    @keyframes flameFlicker {
+      from {
+        opacity: 0.85;
+        scale: 0.95;
+      }
+
+      to {
+        opacity: 1;
+        scale: 1.04;
+      }
+    }
+
+    .candle-flame.blown-out {
+      animation: flameOut 0.8s ease forwards;
+    }
+
+    @keyframes flameOut {
+      to {
+        opacity: 0;
+        transform: translate(-50%, -12px) scale(0.25) rotate(-45deg);
+      }
+    }
+
+    .smoke {
+      position: absolute;
+      top: 5%;
+      left: 50%;
+
+      color: #A9A9A9;
+      font-size: 33px;
+
+      opacity: 0;
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+
+    .smoke.rising {
+      animation: smokeRise 2s ease-out forwards;
+    }
+
+    @keyframes smokeRise {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, 18px) scale(0.7);
+      }
+
+      30% {
+        opacity: 0.6;
+      }
+
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -35px) scale(1.2);
+      }
+    }
+
+    /*
+      The candle position is approximate until the actual
+      cake photograph is chosen. We can adjust it afterward.
+    */
+
+    /* ---------- BALLOONS ---------- */
+
+    .balloon {
+      position: fixed;
+      bottom: -100px;
+
+      width: 38px;
+      height: 46px;
+
+      border-radius: 50% 50% 45% 45%;
+      opacity: 0;
+
+      z-index: 2;
+      pointer-events: none;
+
+      animation: balloonRise 8s ease-in forwards;
+    }
+
+    .balloon::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 100%;
+      height: 34px;
+      border-left: 1px solid #ffffff55;
+    }
+
+    @keyframes balloonRise {
+      0% {
+        transform: translateY(0) rotate(-3deg);
+        opacity: 0;
+      }
+
+      12% {
+        opacity: 0.75;
+      }
+
+      85% {
+        opacity: 0.65;
+      }
+
+      100% {
+        transform: translateY(-130vh) rotate(4deg);
+        opacity: 0;
+      }
+    }
+
+    /* ---------- CONFETTI ---------- */
+
+    .confetti {
+      position: fixed;
+      top: -12px;
+
+      width: 5px;
+      height: 8px;
+
+      z-index: 5;
+      pointer-events: none;
+
+      animation: confettiFall 4.5s ease-in forwards;
+    }
+
+    @keyframes confettiFall {
+      to {
+        transform: translateY(110vh) rotate(400deg);
+        opacity: 0;
+      }
+    }
+
+    /* ---------- GIFT BOX ---------- */
+
+    .gift-area {
+      min-height: 190px;
+      margin: 24px auto 18px;
+
+      display: grid;
+      place-items: center;
+    }
+
+    .gift {
+      position: relative;
+      width: 126px;
+      height: 100px;
+      margin-top: 15px;
+
+      cursor: pointer;
+
+      animation: giftFadeIn 1.8s ease both;
+    }
+
+    @keyframes giftFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .gift-box {
+      position: absolute;
+      bottom: 0;
+
+      width: 126px;
+      height: 72px;
+
+      background: linear-gradient(
+        100deg,
+        #d99bb9,
+        #e9b8d0 55%,
+        #ca8eaf
+      );
+
+      border: 1px solid #ffffff25;
+      border-radius: 3px;
+      box-shadow: 0 12px 25px #0003;
+    }
+
+    .gift-lid {
+      position: absolute;
+      z-index: 2;
+      top: 7px;
+      left: -5px;
+
+      width: 136px;
+      height: 20px;
+
+      background: linear-gradient(
+        100deg,
+        #c4b0e5,
+        #e1d5f2 55%,
+        #b7a0db
+      );
+
+      border-radius: 3px;
+
+      transform-origin: 10% 90%;
+
+      transition: transform 1.2s ease;
+    }
+
+    .gift-ribbon {
+      position: absolute;
+      z-index: 3;
+
+      top: 7px;
+      left: 54px;
+
+      width: 18px;
+      height: 91px;
+
+      background: #d6c3f0;
+    }
+
+    .bow {
+      position: absolute;
+      z-index: 4;
+
+      top: -9px;
+      left: 42px;
+
+      width: 22px;
+      height: 18px;
+
+      border: 5px solid #e4d6f7;
+      border-radius: 80% 20% 80% 20%;
+
+      transform: rotate(25deg);
+
+      transition:
+        transform 1s ease,
+        opacity 0.8s ease;
+    }
+
+    .bow::after {
+      content: "";
+      position: absolute;
+
+      top: -5px;
+      left: 10px;
+
+      width: 22px;
+      height: 18px;
+
+      border: 5px solid #e4d6f7;
+      border-radius: 20% 80% 20% 80%;
+
+      transform: rotate(-45deg);
+    }
+
+    .gift.open .gift-lid {
+      transform: translate(-12px, -28px) rotate(-15deg);
+    }
+
+    .gift.open .bow {
+      transform: translateY(-28px) rotate(25deg);
+      opacity: 0.4;
+    }
+
+    .gift.open .gift-ribbon {
+      opacity: 0.5;
+    }
+
+    /* ---------- WISH CARD ---------- */
+
+    .wish-card {
+      width: min(100%, 390px);
+      margin: 0 auto 22px;
+      padding: 24px 20px;
+
+      color: #4e315d;
+      background: linear-gradient(
+        145deg,
+        #fff9fd,
+        #f0e6ff
+      );
+
+      border: 1px solid #ffffff90;
+      border-radius: 16px;
+
+      box-shadow: 0 12px 35px #0003;
+
+      animation: cardRise 1.2s ease both;
+    }
+
+    @keyframes cardRise {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .wish-card h2 {
+      margin: 0 0 12px;
+      color: #8552a0;
+      font-size: 1.35rem;
+    }
+
+    .wish-card p {
+      margin: 0;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 380px) {
+      main {
+          padding: 60px 2px 30px;
+      }
+
+      button,
+      .next-link {
+        padding: 12px 17px;
+      }
+
+      .cake-scene {
+        min-height: 180px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+<link rel="stylesheet" href="navigation.css">
+<script src="navigation.js" defer></script>
+</head>
+
+<body>
+  <div class="glow" aria-hidden="true"></div>
+  <div class="sparkles" id="sparkles" aria-hidden="true"></div>
+
+  <!-- Replace this file whenever you want a different song. -->
+  <audio
+    id="birthdaySong"
+    src="assets/aud/a1.mp3"
+    preload="auto"
+    loop>
+  </audio>
+
+  <main>
+
+    <!-- STAGE 1: OPENING -->
+
+    <section class="stage active" id="startStage">
+      <p class="eyebrow">A tiny BuddyVerse surprise</p>
+
+      <h1>Ready for a little surprise?</h1>
+
+      <p class="copy">
+        No big speech just yet, Kawi.
+        First, go see what's waiting for you. ✨
+      </p>
+
+      <button id="startBtn">
+        Reveal
+      </button>
+    </section>
+
+
+    <!-- STAGE 2: CANDLE AND WISH -->
+
+    <section class="stage" id="candleStage" aria-live="polite">
+      <p class="eyebrow">Dear Miss Kawish</p>
+
+      <h1>Happiest Birthday to You Buddyyyy</h1>
+
+      <p class="copy" id="candleCopy">
+        Let's skip long wishes for now. It's time for a celebration. But before that... go on, make your wish.<br>
+      And dw, I'll pretend I didn't see you being all mysterious. 🤫
+      </p>
+
+      <div class="cake-scene" id="candleCakeScene">
+
+        <div class="cake-placeholder" id="cakePlaceholder">
+          <div>
+            <strong>Your cake photo will appear here.</strong>
+            Add your picture as
+            <br>
+            <code>assets/pic/cake.jpg</code>
+          </div>
+        </div>
+
+        <img
+          class="cake-photo"
+          id="cakePhoto"
+          src="assets/pic/cake.jpg"
+          alt="A birthday cake prepared for Kawi"
+        >
+
+        <span
+          class="candle-flame"
+          id="candleFlame"
+          aria-hidden="true">
+        </span>
+
+        <span
+          class="smoke"
+          id="candleSmoke"
+          aria-hidden="true">
+          〰
+        </span>
+
+      </div>
+
+      <button id="blowBtn">
+        Blow Out the Candle 🕯️
+      </button>
+
+      <p class="tiny-note">
+        Happy Birthday
+      </p>
+    </section>
+
+
+    <!-- STAGE 3: CUT THE CAKE -->
+
+    <section class="stage" id="cutStage" aria-live="polite">
+      <p class="eyebrow">Cake Time</p>
+
+      <h1>Cake first. Everything else can wait.</h1>
+
+      <p class="copy">
+       Well... You deserve a much better real cake but for now, accept this 🫠
+      </p>
+
+      <div class="cake-scene" id="cutCakeScene">
+
+        <div class="cake-placeholder" id="cutCakePlaceholder">
+          <div>
+            <strong>Ready for the cake-cutting moment?</strong>
+            Your chosen cake photo will appear here.
+          </div>
+        </div>
+
+        <img
+          class="cake-photo"
+          id="cutCakePhoto"
+          src="assets/pic/cake.jpg"
+          alt="The birthday cake ready to be cut"
+        >
+
+        <span class="cutting-knife" aria-hidden="true"></span>
+
+      </div>
+
+      <button id="cutBtn">
+        Time to Cut the Cake! 🎂
+      </button>
+    </section>
+
+
+    <!-- STAGE 4: GIFT BOX -->
+
+    <section class="stage" id="giftStage" aria-live="polite">
+      <p class="eyebrow">A bonus surprise · Just for you</p>
+
+      <h1>Wait… seems like there's something for you.</h1>
+
+      <p class="copy">
+        Because one little celebration surprise
+        didn't feel like quite enough. 💜
+      </p>
+
+      <div class="gift-area">
+
+        <div
+          class="gift"
+          id="giftBox"
+          role="img"
+          aria-label="A wrapped pink and purple present">
+
+          <div class="gift-lid"></div>
+          <div class="gift-box"></div>
+          <div class="gift-ribbon"></div>
+          <div class="bow"></div>
+
+        </div>
+
+      </div>
+
+      <button id="openGiftBtn">
+        Open it
+      </button>
+
+      <div class="wish-card hidden" id="wishCard">
+        <h2>A Little Wish for You 💜</h2>
+
+        <p>
+          May this new year of your life bring you
+          good surprises, peaceful days, and plenty
+          of reasons to smile. You deserve good things,
+          Kawi. 💜
+        </p>
+      </div>
+
+      <a
+        class="next-link hidden"
+        id="nextBtn"
+        href="gallery.html">
+        There's More for You →
+      </a>
+    </section>
+<p style="margin-bottom: 92px;"></p>
+    <p class="tiny-note">
+      Made with friendship, a little chaos, and lots of purple. 💜
+    </p>
+
+  </main>
+
+
+  <script>
+    const stageIds = [
+      "startStage",
+      "candleStage",
+      "cutStage",
+      "giftStage"
+    ];
+
+    const birthdaySong = document.getElementById("birthdaySong");
+
+    let musicStarted = false;
+    let musicFading = false;
+    let cutSequenceStarted = false;
+    let giftOpened = false;
+
+
+    // ---------- STAGE TRANSITIONS ----------
+
+    function showStage(stageId) {
+      stageIds.forEach(id => {
+        document.getElementById(id).classList.toggle(
+          "active",
+          id === stageId
+        );
+      });
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+
+
+    // ---------- CAKE IMAGE ----------
+
+    function prepareCakeImage(imageId, placeholderId) {
+      const image = document.getElementById(imageId);
+      const placeholder = document.getElementById(placeholderId);
+
+      function showImage() {
+        placeholder.classList.add("hidden");
+        image.classList.add("visible");
+      }
+
+      function showPlaceholder() {
+        image.classList.remove("visible");
+        placeholder.classList.remove("hidden");
+      }
+
+      image.addEventListener("load", showImage);
+
+      image.addEventListener("error", showPlaceholder);
+
+      // Handles an image that was already cached.
+      if (image.complete && image.naturalWidth > 0) {
+        showImage();
+      }
+
+      return {
+        showImage,
+        showPlaceholder
+      };
+    }
+
+    prepareCakeImage("cakePhoto", "cakePlaceholder");
+    prepareCakeImage("cutCakePhoto", "cutCakePlaceholder");
+
+
+    // ---------- MUSIC ----------
+
+    async function startMusic() {
+      if (musicStarted) return;
+
+      try {
+        birthdaySong.volume = 0;
+        birthdaySong.currentTime = 0;
+
+        await birthdaySong.play();
+
+        musicStarted = true;
+        musicFading = false;
+
+        // Gradually raise the volume.
+        let volume = 0;
+
+        const fadeIn = setInterval(() => {
+          if (musicFading) {
+            clearInterval(fadeIn);
+            return;
+          }
+
+          volume = Math.min(volume + 0.04, 0.55);
+          birthdaySong.volume = volume;
+
+          if (volume >= 0.55) {
+            clearInterval(fadeIn);
+          }
+        }, 150);
+
+      } catch (error) {
+        /*
+          If the audio file is missing or the browser
+          blocks playback, the celebration still works.
+        */
+        console.warn(
+          "Birthday song could not be played. Check the audio file path."
+        );
+      }
+    }
+
+
+    function stopMusic() {
+      if (birthdaySong.paused) return;
+
+      musicFading = true;
+
+      const startingVolume = birthdaySong.volume;
+      const steps = 12;
+      let step = 0;
+
+      const fadeOut = setInterval(() => {
+        step++;
+
+        birthdaySong.volume = Math.max(
+          0,
+          startingVolume * (1 - step / steps)
+        );
+
+        if (step >= steps) {
+          clearInterval(fadeOut);
+
+          birthdaySong.pause();
+          birthdaySong.currentTime = 0;
+          birthdaySong.volume = 0;
+
+          musicStarted = false;
+          musicFading = false;
+        }
+      }, 100);
+    }
+
+
+    // ---------- CONFETTI ----------
+
+    function confettiBurst(amount = 24) {
+      const colors = [
+        "#e7b7d0",
+        "#c5a3ff",
+        "#ead9a4",
+        "#d7c9e9"
+      ];
+
+      for (let i = 0; i < amount; i++) {
+        const piece = document.createElement("i");
+
+        piece.className = "confetti";
+
+        piece.style.left = Math.random() * 100 + "vw";
+
+        piece.style.background =
+          colors[Math.floor(Math.random() * colors.length)];
+
+        piece.style.animationDelay = Math.random() * 1.15 + "s";
+        piece.style.transform = `rotate(${Math.random() * 360}deg)`;
+
+        document.body.appendChild(piece);
+
+        setTimeout(() => {
+          piece.remove();
+        }, 5000);
+      }
+    }
+
+
+    // ---------- BALLOONS ----------
+
+    function releaseBalloons() {
+      const colors = [
+        "#e7b7d0",
+        "#c5a3ff",
+        "#ead9a4",
+        "#d7c9e9"
+      ];
+
+      for (let i = 0; i < 40; i++) {
+        const balloon = document.createElement("div");
+
+        balloon.className = "balloon";
+        balloon.style.left = (5 + Math.random() * 90) + "vw";
+
+        balloon.style.background =
+          colors[Math.floor(Math.random() * colors.length)];
+
+        balloon.style.animationDelay =
+          Math.random() * 1.0 + "s";
+
+        document.body.appendChild(balloon);
+
+        setTimeout(() => {
+          balloon.remove();
+        }, 10500);
+      }
+    }
+
+
+    // ---------- BACKGROUND SPARKLES ----------
+
+    document.getElementById("sparkles").innerHTML =
+      Array.from({ length: 18 }, (_, i) => `
+        <span style="
+          left: ${(i * 37) % 97}%;
+          top: ${(i * 53) % 92}%;
+          animation-delay: ${(i % 5) * 0.4}s;
+        ">✦</span>
+      `).join("");
+
+
+    // ---------- START CELEBRATION ----------
+
+    document.getElementById("startBtn").addEventListener("click", () => {
+      document.body.classList.add("party");
+
+      startMusic();
+
+      confettiBurst(50);
+
+      showStage("candleStage");
+
+      setTimeout(() => {
+        document.getElementById("cakePhoto").classList.add("visible");
+      }, 300);
+    });
+
+
+    // ---------- BLOW OUT THE CANDLE ----------
+
+    document.getElementById("blowBtn").addEventListener("click", () => {
+      const flame = document.getElementById("candleFlame");
+      const smoke = document.getElementById("candleSmoke");
+      const blowBtn = document.getElementById("blowBtn");
+
+      if (blowBtn.disabled) return;
+
+      blowBtn.disabled = true;
+
+      flame.classList.add("blown-out");
+      smoke.classList.add("rising");
+
+      stopMusic();
+
+      document.getElementById("candleCopy").textContent =
+        "Wish made? Good. Now keep it secret. 🤫";
+
+      blowBtn.textContent = "Wish safely made 💜";
+
+      setTimeout(() => {
+        showStage("cutStage");
+
+        setTimeout(() => {
+          document.getElementById("cutCakePhoto").classList.add("visible");
+        }, 300);
+      }, 2200);
+    });
+    // ---------- CUT THE CAKE ----------
+
+    document.getElementById("cutBtn").addEventListener("click", () => {
+      const cutBtn = document.getElementById("cutBtn");
+      const cakeScene = document.getElementById("cutCakeScene");
+
+      if (cutSequenceStarted) return;
+
+      cutSequenceStarted = true;
+      cutBtn.disabled = true;
+
+      cutBtn.textContent = "Cutting the cake... 🎂";
+
+      cakeScene.classList.add("cutting");
+
+      // A small celebration after the cutting begins.
+      confettiBurst(26);
+
+      // Let the cutting animation finish before the next stage.
+      setTimeout(() => {
+        cutBtn.textContent = "Cake successfully claimed! 😌";
+
+        confettiBurst(26);
+        releaseBalloons();
+
+        // Give the moment a little breathing room.
+        setTimeout(() => {
+          showStage("giftStage");
+        }, 3000);
+
+      }, 2200);
+    });
+
+
+    // ---------- OPEN THE GIFT ----------
+
+    document.getElementById("openGiftBtn").addEventListener("click", () => {
+      if (giftOpened) return;
+
+      giftOpened = true;
+
+      const giftBox = document.getElementById("giftBox");
+      const openGiftBtn = document.getElementById("openGiftBtn");
+      const wishCard = document.getElementById("wishCard");
+      const nextBtn = document.getElementById("nextBtn");
+
+      giftBox.classList.add("open");
+
+      openGiftBtn.disabled = true;
+      openGiftBtn.textContent = "A little something for you... 💜";
+
+      // Pause briefly so the gift-opening animation can be enjoyed.
+      setTimeout(() => {
+        wishCard.classList.remove("hidden");
+
+        openGiftBtn.classList.add("hidden");
+        nextBtn.classList.remove("hidden");
+
+        confettiBurst(64);
+      }, 1100);
+    });
+
+  </script>
+</body>
+</html>

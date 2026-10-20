@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="A private little question sequence, made especially for you."
+  >
+
+  <meta name="theme-color" content="#101211">
+
+  <title>A Few Questions | BuddyVerse</title>
+
+  <!-- Existing shared stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Page-specific stylesheet -->
+  <link rel="stylesheet" href="quest.css">
+
+  <!-- Digital interface typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  >
+<link rel="stylesheet" href="navigation.css">
+<script src="navigation.js" defer></script>
+</head>
+
+<body class="q-page">
+
+  <main class="q-shell">
+
+    <!-- Decorative digital background -->
+    <div class="q-background" aria-hidden="true">
+      <div class="q-grid"></div>
+      <div class="q-orb q-orb--one"></div>
+      <div class="q-orb q-orb--two"></div>
+      <div class="q-scanline"></div>
+    </div>
+
+
+    <!-- Header -->
+    <header class="q-header">
+
+      <a href="message.html" class="q-brand">
+        <span class="q-brand__symbol">&lt;/&gt;</span>
+
+        <span class="q-brand__name">
+          BUDDYVERSE
+        </span>
+      </a>
+
+      <div class="q-connection">
+        <span class="q-status-dot"></span>
+        <span>CONNECTION ESTABLISHED</span>
+      </div>
+
+    </header>
+
+
+    <!-- Main experience -->
+    <section class="q-main">
+
+      <div class="q-intro">
+
+        <p class="q-eyebrow">
+          PERSONAL CHANNEL // 007
+        </p>
+
+        <h1 class="q-title">
+          A few questions<span>.</span>
+        </h1>
+
+        <p class="q-description">
+          Nothing complicated. Just a few things I'd like
+          to hear from you, in your own words.
+        </p>
+
+      </div>
+
+
+      <!-- Progress section -->
+      <div class="q-progress-area">
+
+        <div class="q-progress-info">
+
+          <span class="q-progress-label">
+            QUESTION_SEQUENCE
+          </span>
+
+          <span class="q-progress-count" id="q-progress-count">
+            01 / 06
+          </span>
+
+        </div>
+
+        <div
+          class="q-progress-track"
+          role="progressbar"
+          aria-label="Question progress"
+          aria-valuemin="1"
+          aria-valuemax="6"
+          aria-valuenow="1"
+          id="q-progress"
+        >
+          <div
+            class="q-progress-fill"
+            id="q-progress-fill"
+          ></div>
+        </div>
+
+      </div>
+
+
+      <!-- Questionnaire -->
+      <form
+        class="q-form"
+        id="q-form"
+        method="POST"
+        action="https://api.web3forms.com/submit"
+      >
+
+        <!-- Web3Forms configuration -->
+        <input
+          type="hidden"
+          name="access_key"
+          value="96f7804f-42fb-4556-b854-ce49024e11ba"
+        >
+
+        <input
+          type="hidden"
+          name="subject"
+          value="BuddyVerse — Kawi's Question Responses"
+        >
+
+        <input
+          type="hidden"
+          name="from_name"
+          value="BuddyVerse Questions"
+        >
+
+        <input
+          type="hidden"
+          name="form_name"
+          value="BuddyVerse Question Sequence"
+        >
+
+        <!-- Web3Forms honeypot -->
+        <input
+          type="checkbox"
+          name="botcheck"
+          class="q-honeypot"
+          tabindex="-1"
+          autocomplete="off"
+          aria-hidden="true"
+        >
+
+
+        <!-- Question 1 -->
+        <section
+          class="q-step q-step--active"
+          data-step="0"
+          aria-labelledby="q-question-1"
+        >
+
+          <div class="q-step-meta">
+            <span>INPUT_01</span>
+            <span>GETTING STARTED</span>
+          </div>
+
+          <label
+            class="q-question"
+            id="q-question-1"
+            for="q-answer-1"
+          >
+            What's one thing about our friendship
+            that makes you smile?
+          </label>
+
+          <textarea
+            class="q-answer"
+            id="q-answer-1"
+            name="Q1 - What's one thing about our friendship that makes you smile?"
+            placeholder="Type your answer here..."
+            rows="3"
+            required
+          ></textarea>
+
+          <div class="q-step-footer">
+
+            <button
+              class="q-next"
+              type="button"
+            >
+              <span>Next</span>
+              <span aria-hidden="true">→</span>
+            </button>
+
+          </div>
+          <p class="q-hint" aria-live="polite">
+            ↳ Answer the question to move ahead.
+          </p>
+        </section>
+
+
+        <!-- Question 2 -->
+        <section
+          class="q-step"
+          data-step="1"
+          aria-labelledby="q-question-2"
+          hidden
+        >
+
+          <div class="q-step-meta">
+            <span>INPUT_02</span>
+            <span>MEMORY BUFFER</span>
+          </div>
+
+          <label
+            class="q-question"
+            id="q-question-2"
+            for="q-answer-2"
+          >
+            What's a moment or conversation between
+            us that you still remember?
+          </label>
+
+          <textarea
+            class="q-answer"
+            id="q-answer-2"
+            name="Q2 - What's a moment or conversation between us that you still remember?"
+            placeholder="Let the memory load..."
+            rows="3"
+            required
+          ></textarea>
+
+<div class="q-step-footer">
+
+  <button class="q-back" type="button" data-back>
+    <span aria-hidden="true">←</span>
+    <span>Back</span>
+  </button>
+
+  <button
+    class="q-next"
+    type="button"
+  >
+    <span>Next</span>
+    <span aria-hidden="true">→</span>
+  </button>
+
+</div>
+
+          <p class="q-hint" aria-live="polite">
+            ↳ Your answer unlocks the next stage.
+          </p>
+
+        </section>
+
+
+        <!-- Question 3 -->
+        <section
+          class="q-step"
+          data-step="2"
+          aria-labelledby="q-question-3"
+          hidden
+        >
+
+          <div class="q-step-meta">
+            <span>INPUT_03</span>
+            <span>PERSONALITY_SCAN</span>
+          </div>
+
+          <label
+            class="q-question"
+            id="q-question-3"
+            for="q-answer-3"
+          >
+            What's something about me that you
+            think is funny, unusual, or very me?
+          </label>
+
+          <textarea
+            class="q-answer"
+            id="q-answer-3"
+            name="Q3 - What's something about me that you think is funny, unusual, or very me?"
+            placeholder="Be honest. I can take it..."
+            rows="3"
+            required
+          ></textarea>
+
+          <div class="q-step-footer">
+
+            <button
+              class="q-next"
+              type="button"
+            >
+              <span>Next</span>
+              <span aria-hidden="true">→</span>
+            </button>
+
+          </div>
+
+          <p class="q-hint" aria-live="polite">
+            ↳ No answer, no progression.
+          </p>
+
+        </section>
+
+
+        <!-- Question 4 -->
+        <section
+          class="q-step"
+          data-step="3"
+          aria-labelledby="q-question-4"
+          hidden
+        >
+
+          <div class="q-step-meta">
+            <span>INPUT_04</span>
+            <span>CONNECTION_LOG</span>
+          </div>
+
+          <label
+            class="q-question"
+            id="q-question-4"
+            for="q-answer-4"
+          >
+            What's one thing you think we have
+            surprisingly in common?
+          </label>
+
+          <textarea
+            class="q-answer"
+            id="q-answer-4"
+            name="Q4 - What's one thing you think we have surprisingly in common?"
+            placeholder="Your observation..."
+            rows="3"
+            required
+          ></textarea>
+
+          <div class="q-step-footer">
+
+            <button
+              class="q-next"
+              type="button"
+            >
+              <span>Next</span>
+              <span aria-hidden="true">→</span>
+            </button>
+
+          </div>
+
+          <p class="q-hint" aria-live="polite">
+            ↳ One more answer brings you forward.
+          </p>
+
+        </section>
+
+
+        <!-- Question 5 -->
+        <section
+          class="q-step"
+          data-step="4"
+          aria-labelledby="q-question-5"
+          hidden
+        >
+
+          <div class="q-step-meta">
+            <span>INPUT_05</span>
+            <span>OPEN_CHANNEL</span>
+          </div>
+
+          <label
+            class="q-question"
+            id="q-question-5"
+            for="q-answer-5"
+          >
+            Is there anything you've wanted to tell
+            me but haven't found the right moment for?
+          </label>
+
+          <textarea
+            class="q-answer"
+            id="q-answer-5"
+            name="Q5 - Is there anything you've wanted to tell me but haven't found the right moment for?"
+            placeholder="Only share what you're comfortable sharing..."
+            rows="3"
+            required
+          ></textarea>
+
+          <div class="q-step-footer">
+
+            <button
+              class="q-next"
+              type="button"
+            >
+              <span>Next</span>
+              <span aria-hidden="true">→</span>
+            </button>
+
+          </div>
+
+          <p class="q-hint" aria-live="polite">
+            ↳ Your answer is the key to the next stage.
+          </p>
+
+        </section>
+
+
+        <!-- Question 6 -->
+        <section
+          class="q-step"
+          data-step="5"
+          aria-labelledby="q-question-6"
+          hidden
+        >
+
+          <div class="q-step-meta">
+            <span>INPUT_06</span>
+            <span>FINAL_TRANSMISSION</span>
+          </div>
+
+          <label
+            class="q-question"
+            id="q-question-6"
+            for="q-answer-6"
+          >
+            If you could describe our friendship
+            in just a few words, what would you say?
+          </label>
+
+          <textarea
+            class="q-answer"
+            id="q-answer-6"
+            name="Q6 - If you could describe our friendship in just a few words, what would you say?"
+            placeholder="Your final response..."
+            rows="3"
+            required
+          ></textarea>
+
+          <div class="q-step-footer">
+
+            <button
+              class="q-next q-submit"
+              type="submit"
+              id="q-submit"
+            >
+              <span>Transmit answers</span>
+              <span aria-hidden="true">↗</span>
+            </button>
+
+          </div>
+
+          <p class="q-hint" aria-live="polite">
+            ↳ Final stage. Your answers are ready to transmit.
+          </p>
+
+        </section>
+
+
+        <!-- Submission status -->
+        <div
+          class="q-status-message"
+          id="q-status-message"
+          role="status"
+          aria-live="polite"
+          hidden
+        ></div>
+
+      </form>
+
+<!-- Thank-you ending, revealed after successful submission -->
+<section class="q-thanks" id="q-thanks" aria-labelledby="q-thanks-title" hidden>
+  <div class="q-thanks__decoration" aria-hidden="true">
+    <span>✳</span>
+    <span>♡</span>
+    <span>✦</span>
+  </div>
+
+  <p class="q-thanks__eyebrow">
+    TRANSMISSION RECEIVED // THANK YOU
+  </p>
+
+  <h2 id="q-thanks-title" class="q-thanks__title">
+    And that's a wrap<span>.</span>
+  </h2>
+
+  <p class="q-thanks__message">
+    Thank you for answering all my little questions.
+    I know some were random, some were thoughtful,
+    and maybe one or two made you pause for a second.
+  </p>
+
+  <p class="q-thanks__message">
+    But I genuinely wanted to hear your side of things.
+    Your words mean something to me, and I'm glad you
+    took a little time out of your day for this.
+  </p>
+
+  <p class="q-thanks__note">
+    One last little thing is waiting for you.
+  </p>
+
+  <a class="q-ending-link" href="ending.html">
+    <span>One last little thing</span>
+    <span aria-hidden="true">↗</span>
+  </a>
+</section>
+
+      <!-- Footer status -->
+      <footer class="q-footer">
+
+        <div>
+          <span class="q-footer-indicator"></span>
+          SESSION: ACTIVE
+        </div>
+
+        <div>
+          BUDDYVERSE // 007
+        </div>
+
+      </footer>
+
+    </section>
+
+  </main>
+
+
+  <!-- Existing shared JavaScript -->
+  <script src="script.js"></script>
+
+  <!-- Page-specific JavaScript -->
+  <script src="quest.js"></script>
+
+</body>
+</html>

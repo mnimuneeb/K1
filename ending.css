@@ -1,0 +1,593 @@
+/* ========================================================
+   BUDDYVERSE — FINAL PAGE
+
+   A distinct editorial design.
+
+   No floral layout.
+   No centered hero.
+   No note card.
+   No additional navigation.
+
+   Palette:
+   Navy, dusty pink, light green, light grey.
+   ======================================================== */
+
+
+/* --------------------------------------------------------
+   1. PAGE PALETTE
+   -------------------------------------------------------- */
+
+body.ending-page {
+  --end-navy: #1B2A41;
+  --end-navy-light: #263951;
+
+  --end-pink: #D8A7B1;
+  --end-pink-light: #EACBD1;
+
+  --end-green: #C8DCC8;
+  --end-green-muted: #AFC9B3;
+
+  --end-grey: #E9E9E6;
+  --end-grey-muted: #B7C0CA;
+
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+
+  background: var(--end-navy);
+  color: var(--end-grey);
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+
+  overflow-x: hidden;
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+
+/* --------------------------------------------------------
+   2. RESET WITHIN THIS PAGE
+   -------------------------------------------------------- */
+
+body.ending-page *,
+body.ending-page *::before,
+body.ending-page *::after {
+  box-sizing: border-box;
+}
+
+body.ending-page h1,
+body.ending-page h2,
+body.ending-page h3,
+body.ending-page p {
+  margin-top: 0;
+}
+
+body.ending-page a {
+  color: inherit;
+}
+
+
+/*
+   The shared stylesheet hides main elements until they
+   receive the fade-in class. This page must remain visible
+   without depending on that animation.
+*/
+
+body.ending-page main.ending-main {
+  position: relative;
+
+  display: block;
+
+  width: 100%;
+  max-width: none;
+
+  min-height: 100vh;
+  min-height: 100dvh;
+
+  margin: 0;
+  padding: 0;
+
+  background: var(--end-navy);
+  color: var(--end-grey);
+
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+
+  overflow: hidden;
+}
+
+
+/* --------------------------------------------------------
+   3. TOP BAR
+   -------------------------------------------------------- */
+
+.end-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 1rem;
+
+  width: min(100% - 3rem, 1180px);
+
+  margin: 0 auto;
+  padding: 5rem 0 1.7rem;
+
+  border-bottom: 1px solid rgba(233, 233, 230, 0.16);
+}
+
+.end-brand {
+  color: var(--end-grey);
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+
+  letter-spacing: 0.22em;
+}
+
+.end-topbar-note {
+  color: var(--end-grey-muted);
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+
+/* --------------------------------------------------------
+   4. MAIN COMPOSITION
+   -------------------------------------------------------- */
+
+.end-composition {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 0.95fr)
+    1px
+    minmax(0, 1.05fr);
+
+  align-items: stretch;
+
+  gap: clamp(2.2rem, 5vw, 5rem);
+
+  width: min(100% - 3rem, 1080px);
+
+  margin: 0 auto;
+  padding: clamp(4rem, 9vw, 8rem) 0 5rem;
+}
+
+
+/* --------------------------------------------------------
+   5. LARGE TITLE
+   -------------------------------------------------------- */
+
+.end-title-area {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  min-width: 0;
+
+  padding-top: 0.5rem;
+}
+
+.end-kicker {
+  margin: 0 0 2.2rem;
+
+  color: var(--end-green);
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+
+  letter-spacing: 0.24em;
+  line-height: 1.5;
+}
+
+.end-title {
+  max-width: 100%;
+
+  margin: 0;
+
+  color: var(--end-grey);
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(3.4rem, 7.3vw, 6.5rem);
+  font-weight: 500;
+
+  line-height: 0.99;
+  letter-spacing: -0.085em;
+
+  overflow-wrap: normal;
+}
+
+.end-title span {
+  color: var(--end-pink);
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  font-style: italic;
+
+  letter-spacing: -0.09em;
+}
+
+.end-title-caption {
+  margin: 2.3rem 0 0;
+
+  color: var(--end-grey-muted);
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1rem;
+  font-style: italic;
+
+  line-height: 1.9;
+}
+
+.end-title-mark {
+  display: block;
+
+  margin-top: clamp(2.5rem, 7vw, 5rem);
+
+  color: var(--end-green);
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 3rem;
+  font-weight: 400;
+
+  line-height: 1;
+}
+
+
+/* --------------------------------------------------------
+   6. VERTICAL DIVIDER
+   -------------------------------------------------------- */
+
+.end-divider {
+  width: 1px;
+  min-height: 100%;
+
+  background:
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      var(--end-pink) 12%,
+      rgba(216, 167, 177, 0.35) 75%,
+      transparent 100%
+    );
+}
+
+
+/* --------------------------------------------------------
+   7. LETTER AREA
+   -------------------------------------------------------- */
+
+.end-letter {
+  min-width: 0;
+
+  padding-top: 0.25rem;
+}
+
+.end-recipient {
+  margin: 0 0 2rem;
+
+  color: var(--end-green);
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.55rem;
+  font-style: italic;
+
+  line-height: 1.4;
+}
+
+.end-message {
+  color: var(--end-grey);
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.98rem;
+  font-weight: 400;
+
+  line-height: 2;
+  overflow-wrap: break-word;
+}
+
+.end-message p {
+  margin: 0 0 1.45rem;
+}
+
+.end-message p:last-child {
+  margin-bottom: 0;
+}
+
+
+/* --------------------------------------------------------
+   8. CLOSING WORDS
+   -------------------------------------------------------- */
+
+.end-signoff {
+  margin-top: 2.8rem;
+  padding-top: 1.8rem;
+}
+
+.end-signoff-line {
+  display: block;
+
+  width: 3.5rem;
+  height: 2px;
+
+  margin-bottom: 1.6rem;
+
+  background: var(--end-pink);
+}
+
+.end-signoff-main {
+  margin: 0;
+
+  color: var(--end-pink-light);
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.8rem, 3vw, 2.35rem);
+  font-style: italic;
+
+  line-height: 1.35;
+  letter-spacing: -0.035em;
+}
+
+.end-signoff-small {
+  margin: 0.6rem 0 0;
+
+  color: var(--end-grey-muted);
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.85rem;
+
+  line-height: 1.8;
+}
+
+.end-signoff-heart {
+  display: block;
+
+  margin-top: 1.5rem;
+
+  color: var(--end-green);
+
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+
+/* --------------------------------------------------------
+   9. BOTTOM EDGE
+   -------------------------------------------------------- */
+
+.end-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 1.2rem;
+
+  width: min(100% - 3rem, 1180px);
+
+  margin: 0 auto;
+  padding: 1.5rem 0 1.8rem;
+
+  border-top: 1px solid rgba(233, 233, 230, 0.16);
+
+  color: var(--end-grey-muted);
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.62rem;
+  font-weight: 700;
+
+  letter-spacing: 0.16em;
+  text-align: center;
+}
+
+.end-bottom-heart {
+  color: var(--end-pink);
+
+  font-size: 0.65rem;
+}
+
+
+/* --------------------------------------------------------
+   10. TABLET LAYOUT
+   -------------------------------------------------------- */
+
+@media (max-width: 800px) {
+
+  .end-composition {
+    grid-template-columns:
+      minmax(0, 0.9fr)
+      1px
+      minmax(0, 1.1fr);
+
+    gap: 2rem;
+
+    width: min(100% - 2.5rem, 700px);
+
+    padding-top: 4.5rem;
+    padding-bottom: 4rem;
+  }
+
+  .end-title {
+    font-size: clamp(3rem, 7vw, 4.5rem);
+  }
+
+  .end-title-caption {
+    font-size: 0.92rem;
+  }
+
+  .end-message {
+    font-size: 0.94rem;
+    line-height: 1.9;
+  }
+
+}
+
+
+/* --------------------------------------------------------
+   11. MOBILE LAYOUT
+   -------------------------------------------------------- */
+
+@media (max-width: 600px) {
+
+  .end-topbar {
+    width: calc(100% - 2.5rem);
+
+    padding: 4.5rem 0.3rem;
+  }
+
+  .end-brand {
+    font-size: 0.65rem;
+    letter-spacing: 0.16em;
+  }
+
+  .end-topbar-note {
+    font-size: 0.8rem;
+    text-align: right;
+  }
+
+  .end-composition {
+    display: flex;
+    flex-direction: column;
+
+    gap: 2.4rem;
+
+    width: calc(100% - 2.5rem);
+
+    padding: 4.2rem 0 3.5rem;
+  }
+
+  .end-title-area {
+    padding-top: 0;
+  }
+
+  .end-kicker {
+    margin-bottom: 1.6rem;
+
+    font-size: 0.65rem;
+  }
+
+  .end-title {
+    font-size: clamp(3.5rem, 15vw, 5.5rem);
+    line-height: 0.98;
+  }
+
+  .end-title-caption {
+    margin-top: 1.6rem;
+
+    font-size: 0.95rem;
+  }
+
+  .end-title-mark {
+    position: absolute;
+
+    right: 0;
+    bottom: 0.2rem;
+
+    margin: 0;
+
+    font-size: 2.4rem;
+  }
+
+  .end-divider {
+    width: 100%;
+    min-height: 1px;
+    height: 1px;
+
+    background:
+      linear-gradient(
+        to right,
+        transparent,
+        var(--end-pink),
+        rgba(216, 167, 177, 0.2),
+        transparent
+      );
+  }
+
+  .end-letter {
+    padding-top: 0;
+  }
+
+  .end-recipient {
+    margin-bottom: 1.5rem;
+
+    font-size: 1.4rem;
+  }
+
+  .end-message {
+    font-size: 0.96rem;
+    line-height: 1.95;
+  }
+
+  .end-message p {
+    margin-bottom: 1.35rem;
+  }
+
+  .end-signoff {
+    margin-top: 2.2rem;
+    padding-top: 1.5rem;
+  }
+
+  .end-signoff-main {
+    font-size: 1.9rem;
+  }
+
+  .end-bottom {
+    flex-wrap: wrap;
+
+    gap: 0.7rem;
+
+    width: calc(100% - 2.5rem);
+
+    font-size: 0.56rem;
+    letter-spacing: 0.11em;
+  }
+
+}
+
+
+/* --------------------------------------------------------
+   12. VERY SMALL SCREENS
+   -------------------------------------------------------- */
+
+@media (max-width: 360px) {
+
+  .end-title {
+    font-size: 3.15rem;
+  }
+
+  .end-message {
+    font-size: 0.92rem;
+  }
+
+  .end-topbar-note {
+    max-width: 8rem;
+  }
+
+}
+
+
+/* --------------------------------------------------------
+   13. ACCESSIBILITY
+   -------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+  body.ending-page *,
+  body.ending-page *::before,
+  body.ending-page *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+
+}

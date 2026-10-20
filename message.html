@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="A little letter, written especially for you."
+  >
+
+  <meta name="theme-color" content="#101B2D">
+
+  <title>A Letter for You | BuddyVerse</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Fonts specific to the Midnight Letters page -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap"
+    rel="stylesheet"
+  >
+<link rel="stylesheet" href="navigation.css">
+<script src="navigation.js" defer></script>
+</head>
+
+<body class="ml-page">
+
+  <main class="ml-scene">
+
+    <!-- Atmospheric background -->
+    <div class="ml-atmosphere" aria-hidden="true">
+      <div class="ml-glow"></div>
+      <div class="ml-glow ml-glow--secondary"></div>
+    </div>
+
+    <!-- Opening scene -->
+    <section
+      class="ml-opening"
+      id="ml-opening"
+      aria-labelledby="ml-intro-title"
+    >
+      <div class="ml-opening__content">
+
+        <p class="ml-eyebrow">
+          A MOMENT JUST FOR YOU
+        </p>
+
+        <h1 id="ml-intro-title" class="ml-opening__title">
+          Some words<br>
+          are worth keeping.
+        </h1>
+
+        <p class="ml-opening__description">
+          I've left something here for you.
+          Take your time.
+        </p>
+
+        <button
+          type="button"
+          class="ml-reveal-button"
+          id="ml-reveal-button"
+          aria-controls="ml-letter"
+        >
+          <span>Let the words find you</span>
+          <span class="ml-button-arrow" aria-hidden="true">↗</span>
+        </button>
+
+        <p class="ml-opening__footnote">
+          No rush. This moment is yours.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- Letter scene -->
+    <section
+      class="ml-letter-scene"
+      id="ml-letter-scene"
+      aria-label="A personal letter"
+      aria-hidden="true"
+      inert
+    >
+
+      <article class="ml-letter" id="ml-letter">
+
+        <div class="ml-letter__inner">
+
+          <p class="ml-letter__label">
+            A LETTER FOR YOU
+          </p>
+
+          <!-- Replace this heading whenever you want -->
+          <h2 class="ml-letter__heading" id="ml-letter-heading">
+            Dear Buddy,
+          </h2>
+
+          <!--
+            Replace the placeholder paragraphs with your own letter.
+            Keep each paragraph inside its own <p> element.
+          -->
+          <div class="ml-letter__body" id="ml-letter-body">
+
+            <p class="ml-placeholder">
+              Your words will go here.
+            </p>
+
+            <p class="ml-placeholder">
+              Take your time writing them.
+              They don't have to be perfect.
+              They just have to be yours.
+            </p>
+
+          </div>
+
+          <!-- Optional closing -->
+          <p class="ml-letter__signature">
+            With warmth,<br>
+            <span>Buddy</span>
+          </p>
+
+          <div class="ml-letter__divider" aria-hidden="true"></div>
+
+          <p class="ml-letter__postscript">
+            END OF THIS LITTLE LETTER
+          </p>
+
+        </div>
+
+      </article>
+
+      <!-- Continue to the next page -->
+      <div class="ml-ending" id="ml-ending">
+
+        <p class="ml-ending__text">
+          And there's still a little more waiting for you.
+        </p>
+
+        <a class="ml-next-button" href="quest.html">
+          Continue your journey
+          <span aria-hidden="true">→</span>
+        </a>
+
+        <a class="ml-back-link" href="reasons.html">
+          Back to the previous page
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+
+<script>
+(() => {
+  "use strict";
+
+  function initMidnightLetters() {
+    if ("scrollRestoration" in history) {
+  history.scrollRestoration = "manual";
+}
+window.scrollTo(0, 0);
+    const page = document.querySelector(".ml-page");
+    const revealButton = document.getElementById("ml-reveal-button");
+    const opening = document.getElementById("ml-opening");
+    const letterScene = document.getElementById("ml-letter-scene");
+    const letter = document.getElementById("ml-letter");
+    const ending = document.getElementById("ml-ending");
+    const heading = document.getElementById("ml-letter-heading");
+
+    if (
+      !page ||
+      !revealButton ||
+      !opening ||
+      !letterScene ||
+      !letter ||
+      !ending
+    ) {
+      console.error(
+        "Midnight Letters: One or more required elements are missing."
+      );
+      return;
+    }
+
+    // Prevent the handler from being attached more than once.
+    if (revealButton.dataset.initialized === "true") return;
+    revealButton.dataset.initialized = "true";
+
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    const delay = (ms) => new Promise((resolve) => {
+      window.setTimeout(resolve, reducedMotion ? 0 : ms);
+    });
+
+    revealButton.addEventListener("click", async () => {
+      // Ignore repeated clicks while the reveal is running.
+      if (page.classList.contains("ml-revealing")) return;
+
+      page.classList.add("ml-revealing");
+      revealButton.disabled = true;
+      revealButton.setAttribute("aria-expanded", "true");
+
+      // Make the letter accessible before revealing it.
+      letterScene.inert = false;
+      letterScene.setAttribute("aria-hidden", "false");
+      letterScene.classList.add("ml-letter-scene--visible");
+
+      // Fade out the introduction.
+      opening.classList.add("ml-opening--leaving");
+
+      await delay(550);
+
+      // Remove the introduction completely so it cannot// occupy screen space or push the letter downward.
+      opening.remove();
+     // Reset the scroll position so the letter starts at the top.
+window.scrollTo({
+  top: 0,
+  behavior: "auto"
+});
+
+      // Give the letter scene time to appear.
+      await delay(350);
+
+      // Reveal the letter.
+      letter.classList.add("ml-letter--revealed");
+
+      // Move focus to the letter heading for accessibility.
+      if (heading) {
+        heading.setAttribute("tabindex", "-1");
+        heading.focus({ preventScroll: true });
+      }
+
+      // Reveal the continuation button after the letter.
+      await delay(1100);
+
+      ending.classList.add("ml-ending--visible");
+
+      // Allow the visitor to scroll through the complete letter.
+      letterScene.style.minHeight = "auto";
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener(
+      "DOMContentLoaded",
+      initMidnightLetters,
+      { once: true }
+    );
+  } else {
+    initMidnightLetters();
+  }
+})();
+</script>
+</body>
+</html>
