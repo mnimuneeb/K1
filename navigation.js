@@ -110,19 +110,18 @@
         .trim()
         .toLowerCase();
 
-      const isIntendedFinalLink =
-        linkText.includes("one last little thing");
-
-      if (leadsToEnding && isIntendedFinalLink) {
-        try {
-          sessionStorage.setItem(ENDING_GATE_KEY, "yes");
-        } catch (error) {
-          console.warn("Could not save the navigation unlock marker.");
-        }
+if (
+      leadsToEnding &&
+      linkText.includes("one last little thing")
+    ) {
+      try {
+        localStorage.setItem(STORAGE_KEY, "yes");
+      } catch (error) {
+        console.warn("Could not unlock BuddyVerse navigation.");
       }
-    });
-  }
-
+    }
+  });
+}
   /*
     Don't inject a menu before the final page has been reached.
     The current page still loads the shared script normally.
