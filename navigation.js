@@ -44,12 +44,16 @@
     }
   ];
 
-  const currentFile = (
+const currentFile = (() => {
+  const file = (
     window.location.pathname.split("/").pop() || "index.html"
   ).toLowerCase();
 
-  const isEndingPage = currentFile === "ending.html";
-  const isQuestPage = currentFile === "quest.html";
+  return file.endsWith(".html") ? file : `${file}.html`;
+})();
+
+const isEndingPage = currentFile === "ending.html";
+const isQuestPage = currentFile === "quest.html";
 
   /*
     The menu unlocks only when the visitor follows the intended
@@ -101,9 +105,14 @@
         return;
       }
 
-      const leadsToEnding =
-        destination.pathname.split("/").pop().toLowerCase() ===
-        "ending.html";
+const destinationFile = (
+  destination.pathname.split("/").pop() || "index.html"
+).toLowerCase();
+
+const leadsToEnding =
+  (destinationFile.endsWith(".html")
+    ? destinationFile
+    : `${destinationFile}.html`) === "ending.html";
 
       const linkText = (link.textContent || "")
         .replace(/\s+/g, " ")
