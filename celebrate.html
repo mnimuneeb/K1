@@ -1020,6 +1020,42 @@
       }, 100);
     }
 
+    // ---------- PAUSE MUSIC WHEN THE PAGE IS INACTIVE ----------
+
+    let resumeMusicWhenVisible = false;
+
+    document.addEventListener("visibilitychange", async () => {
+
+      // Pause music when the user leaves the browser tab.
+      if (document.hidden) {
+
+        resumeMusicWhenVisible =
+          !birthdaySong.paused &&
+          musicStarted &&
+          !musicFading;
+
+        if (resumeMusicWhenVisible) {
+          birthdaySong.pause();
+        }
+
+        return;
+      }
+
+      // Resume music when the user returns to the website.
+      if (resumeMusicWhenVisible) {
+
+        resumeMusicWhenVisible = false;
+
+        try {
+          await birthdaySong.play();
+        } catch (error) {
+          console.warn(
+            "The birthday song could not resume automatically.",
+            error
+          );
+        }
+      }
+    });
 
     // ---------- CONFETTI ----------
 
