@@ -28,7 +28,7 @@
     },
     {
       file: "reasons.html",
-      title: "Reasons Why You're Special"
+      title: "Why You're Special to Me"
     },
     {
       file: "message.html",

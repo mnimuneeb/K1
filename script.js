@@ -1,3 +1,38 @@
+/* =========================================================
+   BUDDYVERSE: GLOBAL SCROLL RESTORATION
+   Start pages at the top when they load or reload.
+   ========================================================= */
+
+(() => {
+  "use strict";
+
+  if ("scrollRestoration" in history) {
+    history.scrollRestoration = "manual";
+  }
+
+  function resetScrollPosition() {
+    window.scrollTo(0, 0);
+  }
+
+  // Reset as soon as the DOM is ready.
+  if (document.readyState === "loading") {
+    document.addEventListener(
+      "DOMContentLoaded",
+      resetScrollPosition,
+      { once: true }
+    );
+  } else {
+    resetScrollPosition();
+  }
+
+  // Handle pages restored from the browser's back-forward cache.
+  window.addEventListener("pageshow", (event) => {
+    if (event.persisted) {
+      resetScrollPosition();
+    }
+  });
+})();
+/* ---------- Start of Actual code -----------*/
 'use strict';
 
 (() => {
@@ -493,98 +528,94 @@
 
   /* ---------- Card Flip Interaction ---------- */
 
-  cards.forEach(card => {
-    const front = card.querySelector(".rs-card__trigger");
+/* ---------- Minimal Card Note Interaction ---------- */
 
-    if (!front) {
-      return;
-    }
+cards.forEach(card => {
+  const front = card.querySelector(".rs-card__trigger");
 
-    const noteId = front.getAttribute("aria-controls");
+  if (!front) {
+    return;
+  }
 
-    const back = noteId
-      ? document.getElementById(noteId)
-      : null;
+  const noteId = front.getAttribute("aria-controls");
+  const note = noteId
+    ? document.getElementById(noteId)
+    : null;
 
-    if (!back) {
-      return;
-    }
+  if (!note) {
+    return;
+  }
 
-    /*
-      Add a real button to the back face so the user
-      can return to the front after reading the note.
-    */
+  const hint = front.querySelector(".rs-card__hint");
 
-    const returnButton = document.createElement("button");
+  let closeTimer = null;
+
+  /* Create the return button only once. */
+  let returnButton = note.querySelector(".rs-card__return");
+
+  if (!returnButton) {
+    returnButton = document.createElement("button");
 
     returnButton.type = "button";
     returnButton.className = "rs-card__return";
     returnButton.textContent = "Turn back ↶";
 
-    back.appendChild(returnButton);
+    note.appendChild(returnButton);
+  }
 
-    const hint = front.querySelector(".rs-card__hint");
-
-    let closeTimer = null;
-
-    function openCard() {
-      if (closeTimer) {
-        window.clearTimeout(closeTimer);
-        closeTimer = null;
-      }
-
-      back.hidden = false;
-
-      front.setAttribute("aria-expanded", "true");
-
-      if (hint) {
-        hint.textContent = "Note opened";
-      }
-
-      /*
-        Let the back face become visible before starting
-        the rotation.
-      */
-
-      window.requestAnimationFrame(() => {
-        card.classList.add("is-open");
-      });
+  function openCard() {
+    if (closeTimer) {
+      window.clearTimeout(closeTimer);
+      closeTimer = null;
     }
 
-    function closeCard() {
-      card.classList.remove("is-open");
+    card.classList.remove("is-closing");
 
-      front.setAttribute("aria-expanded", "false");
+    /* Reveal the note before opening the card. */
+    note.hidden = false;
 
-      if (hint) {
-        hint.textContent = "Tap to open";
-      }
+    /* Let the browser register its initial hidden state. */
+    void note.offsetHeight;
 
-      /*
-        Hide the back only after the card has rotated
-        back to its original position.
-      */
+    card.classList.add("is-open");
 
-      closeTimer = window.setTimeout(() => {
-        if (!card.classList.contains("is-open")) {
-          back.hidden = true;
-        }
+    front.setAttribute("aria-expanded", "true");
 
-        closeTimer = null;
-      }, 680);
+    if (hint) {
+      hint.textContent = "Note opened";
+    }
+  }
+
+  function closeCard() {
+    if (!card.classList.contains("is-open")) {
+      return;
     }
 
-    front.addEventListener("click", () => {
-      const isOpen =
-        front.getAttribute("aria-expanded") === "true";
+    card.classList.remove("is-open");
+    card.classList.add("is-closing");
 
-      if (!isOpen) {
-        openCard();
-      }
-    });
+    front.setAttribute("aria-expanded", "false");
 
-    returnButton.addEventListener("click", closeCard);
-  });
+    if (hint) {
+      hint.textContent = "Tap to open";
+    }
+
+    /*
+      Allow the note to fade away before hiding it.
+      The card then returns to its original height.
+    */
+    closeTimer = window.setTimeout(() => {
+      note.hidden = true;
+      card.classList.remove("is-closing");
+
+      closeTimer = null;
+    }, 210);
+  }
+
+  front.addEventListener("click", openCard);
+
+  returnButton.addEventListener("click", closeCard);
+});
 
   /* ---------- Respect Reduced Motion ---------- */
 

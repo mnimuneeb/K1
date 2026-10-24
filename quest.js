@@ -91,7 +91,7 @@
      3. ENSURE EVERY QUESTION HAS A BACK BUTTON
 
      Question 1 doesn't need one.
-     Questions 2–6 must have one.
+     Every question after Question 1 must have one.
      ======================================================= */
 
   steps.forEach((step, index) => {
@@ -218,6 +218,15 @@
      6. PROGRESS INDICATOR
      ======================================================= */
 
+  // Keep the accessibility maximum synchronized with
+  // the actual number of questions.
+  if (progressBar) {
+    progressBar.setAttribute(
+      "aria-valuemax",
+      String(totalSteps)
+    );
+  }
+
   function updateProgress() {
     const currentNumber = currentStep + 1;
 
@@ -274,15 +283,6 @@
     if (answer) {
       answer.focus({ preventScroll: true });
     }
-
-    const reducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-
-    window.scrollTo({
-      top: 0,
-      behavior: reducedMotion ? "auto" : "smooth"
-    });
   }
 
 
@@ -402,12 +402,13 @@
     if (progressArea) {
       progressArea.hidden = true;
     }
-// Hide the opening heading and description.
-const introSection = document.querySelector(".q-intro");
 
-if (introSection) {
-  introSection.hidden = true;
-}
+    // Hide the opening heading and description.
+    const introSection = document.querySelector(".q-intro");
+
+    if (introSection) {
+      introSection.hidden = true;
+    }
 
     // Update the progress text and bar safely.
     if (progressCount) {
@@ -467,7 +468,7 @@ if (introSection) {
 
     if (isSubmitting || isComplete) return;
 
-    // Validate all six answers ourselves.
+    // Validate all eight answers ourselves.
     // This also works if the form is submitted directly.
     if (!validateAllSteps()) return;
 

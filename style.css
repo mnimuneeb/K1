@@ -3614,3 +3614,586 @@ overflow: visible;
   }
 }
 
+/* Fix: prevent the hidden letter scene from creating blank
+ space */
+.ml-letter-scene[aria-hidden="true"] {
+    display: none !important;
+}
+
+/* =========================================================
+   BUDDYVERSE REASONS PAGE
+   Dynamic card height and improved note typography
+   ========================================================= */
+
+/* Keep the 3D card flip and animate the changing height. */
+.rs-reveal-ready .rs-card.rs-reveal-item {
+  min-height: 270px;
+  height: auto;
+  box-sizing: border-box;
+
+  transition:
+    transform 650ms cubic-bezier(0.2, 0.75, 0.25, 1),
+    height 350ms ease;
+}
+
+/* Preserve the original card size when it is closed. */
+.rs-reveal-ready .rs-card.rs-reveal-item:not(.is-open) {
+  height: auto;
+}
+
+/* Keep the front face filling the card. */
+.rs-reveal-ready .rs-card__trigger {
+  box-sizing: border-box;
+  height: 100%;
+  min-height: 0;
+}
+
+/* Let the back face display its complete content. */
+.rs-reveal-ready .rs-card__note {
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 1rem;
+
+  padding: 1.5rem 1.35rem;
+  margin: 0;
+
+  height: auto;
+  min-height: 100%;
+
+  overflow: visible;
+  overflow-y: visible;
+
+  text-align: left;
+}
+
+/* Refined little heading on the back of each card. */
+.rs-reveal-ready .rs-card__note::before {
+  flex-shrink: 0;
+
+  margin-bottom: 0.15rem;
+
+  font-family: "Lora", Georgia, serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  line-height: 1.6;
+}
+
+/* Comfortable, readable description text. */
+.rs-reveal-ready .rs-card__note p {
+  flex: 0 0 auto;
+  min-width: 0;
+  width: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  color: #685565;
+
+  font-family: "Lora", Georgia, serif;
+  font-size: 0.98rem;
+  font-weight: 400;
+  line-height: 1.8;
+  letter-spacing: 0.005em;
+
+  overflow: visible;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: auto;
+
+  text-align: left;
+}
+
+/* Keep the return button comfortably spaced below the note. */
+.rs-reveal-ready .rs-card__return {
+  flex-shrink: 0;
+  align-self: flex-start;
+
+  margin-top: 0.35rem;
+
+  font-family: "Lora", Georgia, serif;
+  font-size: 0.84rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* Give longer notes a little more breathing room on phones. */
+@media (max-width: 700px) {
+  .rs-reveal-ready .rs-card.rs-reveal-item {
+    min-height: 250px;
+  }
+
+  .rs-reveal-ready .rs-card__note {
+    padding: 1.35rem 1.2rem;
+    gap: 0.9rem;
+  }
+
+  .rs-reveal-ready .rs-card__note p {
+    font-size: 0.96rem;
+    line-height: 1.8;
+  }
+}
+
+/* Avoid unwanted height transitions when reduced motion is enabled. */
+@media (prefers-reduced-motion: reduce) {
+  .rs-reveal-ready .rs-card.rs-reveal-item {
+    transition: none;
+  }
+}
+
+/* ==========================================
+   REASONS PAGE: DYNAMIC CARD HEIGHT FIX
+   ========================================== */
+
+.rs-grid {
+  align-items: start;
+}
+
+.rs-reveal-ready .rs-card.rs-reveal-item {
+  height: 270px;
+  min-height: 270px;
+  box-sizing: border-box;
+  overflow: visible !important;
+
+  transition:
+    height 350ms ease,
+    transform 650ms cubic-bezier(0.2, 0.75, 0.25, 1);
+}
+
+/* Preserve the original card height on mobile. */
+@media (max-width: 700px) {
+  .rs-reveal-ready .rs-card.rs-reveal-item {
+    height: 250px;
+    min-height: 250px;
+  }
+}
+
+/* Front face fills the current card dimensions. */
+.rs-reveal-ready .rs-card.rs-reveal-item .rs-card__trigger {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* Back face must grow with its content, not scroll. */
+.rs-reveal-ready .rs-card.rs-reveal-item .rs-card__note {
+  position: absolute;
+  inset: 0 0 auto 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 14px;
+
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  max-height: none;
+  box-sizing: border-box;
+
+  padding: 24px 20px;
+
+  overflow: visible !important;
+  overflow-y: visible !important;
+
+  text-align: left;
+}
+
+/* Readable, soft, aesthetic typography. */
+.rs-reveal-ready .rs-card.rs-reveal-item .rs-card__note p {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+
+  font-family: "Lora", Georgia, serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.8;
+  letter-spacing: 0.01em;
+
+  color: #685565;
+
+  white-space: normal;
+  overflow: visible;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+/* Keep the return button below the complete description. */
+.rs-reveal-ready .rs-card.rs-reveal-item .rs-card__return {
+  flex-shrink: 0;
+  margin-top: 4px;
+
+  font-family: "Lora", Georgia, serif;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+@media (max-width: 700px) {
+  .rs-reveal-ready .rs-card.rs-reveal-item .rs-card__note {
+    padding: 22px 18px;
+    gap: 12px;
+  }
+
+  .rs-reveal-ready .rs-card.rs-reveal-item .rs-card__note p {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+}
+
+/* =====================================================
+   BUDDYVERSE REASONS PAGE
+   Minimal note reveal + refined typography
+   ===================================================== */
+
+/* ---------- Restore a clean card layout ---------- */
+
+.rs-grid {
+  perspective: none;
+  align-items: start;
+}
+
+.rs-card,
+.rs-reveal-ready .rs-card.rs-reveal-item,
+.rs-reveal-ready .rs-card.rs-reveal-item.is-open {
+  position: relative !important;
+  isolation: isolate;
+
+  height: auto !important;
+  min-height: 270px !important;
+
+  overflow: hidden !important;
+
+  border: 1px solid var(--rs-border) !important;
+  border-radius: 1.15rem;
+
+  background: var(--rs-card) !important;
+
+  box-shadow: 0 8px 24px rgba(100, 67, 84, 0.055);
+
+  transform: none !important;
+  transform-style: flat !important;
+
+  transition:
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    background-color 220ms ease;
+}
+
+/* The open card grows naturally with its note. */
+.rs-card.is-open,
+.rs-reveal-ready .rs-card.rs-reveal-item.is-open {
+  min-height: 0 !important;
+
+  border-color: var(--rs-card-accent) !important;
+
+  box-shadow: 0 12px 30px rgba(100, 67, 84, 0.09);
+}
+
+/* Closed cards retain their original proportions. */
+.rs-card:not(.is-open) {
+  min-height: 270px !important;
+}
+
+/* ---------- Card front ---------- */
+
+.rs-card__trigger,
+.rs-reveal-ready .rs-card.rs-reveal-item .rs-card__trigger {
+  position: relative !important;
+  inset: auto !important;
+
+  z-index: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  width: 100%;
+  height: auto !important;
+  min-height: 269px !important;
+
+  margin: 0;
+  padding: 1.5rem 1.35rem 1.2rem;
+
+  border: 0 !important;
+  border-radius: inherit;
+
+  background: transparent !important;
+  box-shadow: none !important;
+
+  color: var(--rs-text);
+
+  transform: none !important;
+
+  text-align: left;
+
+  backface-visibility: visible !important;
+  -webkit-backface-visibility: visible !important;
+
+  transition: opacity 180ms ease;
+}
+
+/* Hide the front when its note is open. */
+.rs-card.is-open .rs-card__trigger {
+  display: none !important;
+}
+
+/* Keep the original card height on smaller screens. */
+@media (max-width: 700px) {
+  .rs-card,
+  .rs-card:not(.is-open),
+  .rs-reveal-ready .rs-card.rs-reveal-item {
+    min-height: 250px !important;
+  }
+
+  .rs-card__trigger,
+  .rs-reveal-ready .rs-card.rs-reveal-item .rs-card__trigger {
+    min-height: 249px !important;
+    padding: 1.4rem 1.2rem 1.1rem;
+  }
+}
+
+/* ---------- Handwritten card headings ---------- */
+
+.rs-card__heading {
+  margin-top: 1.25rem;
+
+  color: #493544;
+
+  font-family: "Patrick Hand", cursive;
+  font-size: clamp(1.8rem, 4vw, 2.25rem);
+  font-weight: 400;
+
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+
+  overflow-wrap: break-word;
+  text-wrap: pretty;
+}
+
+/* Make the small labels quieter than the main heading. */
+.rs-card__category {
+  color: #887483;
+
+  font-size: 0.62rem;
+  letter-spacing: 0.085em;
+  line-height: 1.55;
+}
+
+/* ---------- The opened note ---------- */
+
+.rs-card__note,
+.rs-reveal-ready .rs-card.rs-reveal-item .rs-card__note {
+  position: relative !important;
+  inset: auto !important;
+
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+
+  width: 100%;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+
+  margin: 0;
+  padding: 1.5rem 1.35rem 1.35rem;
+
+  border: 0 !important;
+  border-top: 1px solid rgba(150, 120, 140, 0.16) !important;
+  border-radius: 0;
+
+  background:
+    linear-gradient(
+      145deg,
+      #fffefd 0%,
+      var(--rs-card-tint) 100%
+    ) !important;
+
+  box-shadow: none !important;
+
+  overflow: visible !important;
+  overflow-y: visible !important;
+
+  opacity: 0;
+  transform: translateY(5px) !important;
+
+  transition:
+    opacity 200ms ease,
+    transform 200ms ease;
+
+  backface-visibility: visible !important;
+  -webkit-backface-visibility: visible !important;
+}
+
+/* Hidden notes must remain completely out of the layout. */
+.rs-card__note[hidden] {
+  display: none !important;
+}
+
+/* A quiet reveal instead of a dramatic card flip. */
+.rs-card.is-open .rs-card__note {
+  opacity: 1;
+
+  transform: translateY(0) !important;
+}
+
+/* Small handwritten-style section label above the note. */
+.rs-card__note::before {
+  content: "a little note for you ✧";
+
+  display: block;
+  flex-shrink: 0;
+
+  margin-bottom: 0.85rem;
+
+  color: var(--rs-card-accent);
+
+  font-family: "Patrick Hand", cursive;
+  font-size: 1.15rem;
+  font-weight: 400;
+
+  letter-spacing: 0.025em;
+  line-height: 1.35;
+}
+
+/* ---------- Comfortable long-form reading ---------- */
+
+.rs-card__note p,
+.rs-reveal-ready .rs-card.rs-reveal-item .rs-card__note p {
+  width: 100%;
+  min-width: 0;
+
+  margin: 0;
+  padding: 0;
+
+  color: #51404f;
+
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+
+  line-height: 1.85;
+  letter-spacing: 0.005em;
+
+  text-align: left;
+
+  overflow: visible;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: auto;
+}
+
+/* Remove the old decorative first-letter color. */
+.rs-card__note p::first-letter {
+  color: inherit;
+}
+
+/* ---------- Return button ---------- */
+
+.rs-card__return {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+
+  min-height: 40px;
+
+  margin-top: 1.2rem;
+  padding: 0.55rem 0.95rem;
+
+  border: 1px solid rgba(150, 120, 140, 0.28);
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.65);
+  color: #685064;
+
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease;
+}
+
+.rs-card__return:hover {
+  background: #fff;
+  border-color: var(--rs-card-accent);
+}
+
+.rs-card__return:focus-visible {
+  outline: 2px solid var(--rs-card-accent);
+  outline-offset: 3px;
+}
+
+/* ---------- Closing animation ---------- */
+
+/* Keep the note visible briefly while it fades away. */
+.rs-card.is-closing .rs-card__note {
+  position: absolute !important;
+  inset: 0 !important;
+
+  z-index: 3;
+
+  height: 100% !important;
+  min-height: 0 !important;
+
+  border: 0 !important;
+
+  opacity: 0;
+  transform: translateY(3px) !important;
+
+  pointer-events: none;
+}
+
+/* ---------- Mobile reading comfort ---------- */
+
+@media (max-width: 700px) {
+  .rs-card__note,
+  .rs-reveal-ready .rs-card.rs-reveal-item .rs-card__note {
+    padding: 1.3rem 1.15rem 1.2rem;
+  }
+
+  .rs-card__note::before {
+    margin-bottom: 0.7rem;
+    font-size: 1.1rem;
+  }
+
+  .rs-card__note p,
+  .rs-reveal-ready .rs-card.rs-reveal-item .rs-card__note p {
+    font-size: 0.97rem;
+    line-height: 1.85;
+  }
+
+  .rs-card__return {
+    margin-top: 1rem;
+  }
+}
+
+/* ---------- Accessibility ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .rs-card,
+  .rs-card__note,
+  .rs-card__return {
+    transition: none !important;
+  }
+}
+
+/* Fix: prevent the hidden letter scene from creating blank space */
+.ml-letter-scene[aria-hidden="true"] {
+    display: none !important;
+}

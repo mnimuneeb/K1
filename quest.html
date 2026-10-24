@@ -27,8 +27,9 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
     rel="stylesheet"
   >
-<link rel="stylesheet" href="navigation.css">
-<script src="navigation.js" defer></script>
+
+  <link rel="stylesheet" href="navigation.css">
+  <script src="navigation.js" defer></script>
 </head>
 
 <body class="q-page">
@@ -69,7 +70,7 @@
       <div class="q-intro">
 
         <p class="q-eyebrow">
-          PERSONAL CHANNEL // 007
+          PERSONAL CHANNEL // 018
         </p>
 
         <h1 class="q-title">
@@ -77,8 +78,9 @@
         </h1>
 
         <p class="q-description">
-          Nothing complicated. Just a few things I'd like
-          to hear from you, in your own words.
+	I have some questions that I've wanted to ask you for a long time, but never really got the courage to. I think this is a good chance to ask them 🤪. These are just a few of them, but I genuinely want to hear your answers.
+<br><br>
+One important thing: you're not allowed to say mujhe nahi pata or anything like that. Yes, if there's any question you're not comfortable answering, no pressure. You can just say so in the answer box. But no bahane, okayy? 🤧
         </p>
 
       </div>
@@ -94,7 +96,7 @@
           </span>
 
           <span class="q-progress-count" id="q-progress-count">
-            01 / 06
+            01 / 08
           </span>
 
         </div>
@@ -104,7 +106,7 @@
           role="progressbar"
           aria-label="Question progress"
           aria-valuemin="1"
-          aria-valuemax="6"
+          aria-valuemax="8"
           aria-valuenow="1"
           id="q-progress"
         >
@@ -178,15 +180,14 @@
             id="q-question-1"
             for="q-answer-1"
           >
-            What's one thing about our friendship
-            that makes you smile?
+            Is there a memory from your life that you'll always keep close to your heart? And what makes it so special to you?
           </label>
 
           <textarea
             class="q-answer"
             id="q-answer-1"
-            name="Q1 - What's one thing about our friendship that makes you smile?"
-            placeholder="Type your answer here..."
+            name="Q1 - Is there a memory from your life that you'll always keep close to your heart? And what makes it so special to you?"
+            placeholder="Take your time. Think of a memory that means something to you..."
             rows="3"
             required
           ></textarea>
@@ -202,9 +203,11 @@
             </button>
 
           </div>
+
           <p class="q-hint" aria-live="polite">
             ↳ Answer the question to move ahead.
           </p>
+
         </section>
 
 
@@ -226,35 +229,34 @@
             id="q-question-2"
             for="q-answer-2"
           >
-            What's a moment or conversation between
-            us that you still remember?
+            What's something you've never told anyone before?
           </label>
 
           <textarea
             class="q-answer"
             id="q-answer-2"
-            name="Q2 - What's a moment or conversation between us that you still remember?"
-            placeholder="Let the memory load..."
+            name="Q2 - What's something you've never told anyone before?"
+            placeholder="Only share what you feel comfortable letting out..."
             rows="3"
             required
           ></textarea>
 
-<div class="q-step-footer">
+          <div class="q-step-footer">
 
-  <button class="q-back" type="button" data-back>
-    <span aria-hidden="true">←</span>
-    <span>Back</span>
-  </button>
+            <button class="q-back" type="button" data-back>
+              <span aria-hidden="true">←</span>
+              <span>Back</span>
+            </button>
 
-  <button
-    class="q-next"
-    type="button"
-  >
-    <span>Next</span>
-    <span aria-hidden="true">→</span>
-  </button>
+            <button
+              class="q-next"
+              type="button"
+            >
+              <span>Next</span>
+              <span aria-hidden="true">→</span>
+            </button>
 
-</div>
+          </div>
 
           <p class="q-hint" aria-live="polite">
             ↳ Your answer unlocks the next stage.
@@ -281,15 +283,14 @@
             id="q-question-3"
             for="q-answer-3"
           >
-            What's something about me that you
-            think is funny, unusual, or very me?
+            When you were a child, what do you wish you had more of in your life? Like something jo tumhein lagta hai ke tumhein zaroorat thi but tumhare paas nahi tha?
           </label>
 
           <textarea
             class="q-answer"
             id="q-answer-3"
-            name="Q3 - What's something about me that you think is funny, unusual, or very me?"
-            placeholder="Be honest. I can take it..."
+            name="Q3 - When you were a child, what do you wish you had more of in your life?"
+            placeholder="Think back to little-you. What do you wish had been there?"
             rows="3"
             required
           ></textarea>
@@ -331,15 +332,14 @@
             id="q-question-4"
             for="q-answer-4"
           >
-            What's one thing you think we have
-            surprisingly in common?
+            What things make you feel like your true self? Kuch bhi jo ker ke tumhein lagta ho ke yeh insaan asal mein Kawi hai.
           </label>
 
           <textarea
             class="q-answer"
             id="q-answer-4"
-            name="Q4 - What's one thing you think we have surprisingly in common?"
-            placeholder="Your observation..."
+            name="Q4 - What things make you feel like your true self?"
+            placeholder="The little things that feel naturally you..."
             rows="3"
             required
           ></textarea>
@@ -381,15 +381,14 @@
             id="q-question-5"
             for="q-answer-5"
           >
-            Is there anything you've wanted to tell
-            me but haven't found the right moment for?
+            What's something jo tum chahti ho ke tumhare bataye beghair koi samjh jaye?
           </label>
 
           <textarea
             class="q-answer"
             id="q-answer-5"
-            name="Q5 - Is there anything you've wanted to tell me but haven't found the right moment for?"
-            placeholder="Only share what you're comfortable sharing..."
+            name="Q5 - What's something you wish someone would understand without you having to explain it?"
+            placeholder="Something you wish others could just understand, without the explanation..."
             rows="3"
             required
           ></textarea>
@@ -423,7 +422,7 @@
 
           <div class="q-step-meta">
             <span>INPUT_06</span>
-            <span>FINAL_TRANSMISSION</span>
+            <span>OPEN_CHANNEL</span>
           </div>
 
           <label
@@ -431,15 +430,112 @@
             id="q-question-6"
             for="q-answer-6"
           >
-            If you could describe our friendship
-            in just a few words, what would you say?
+            Tumhari life ya personality ki koi aisi cheez jo chaho gi ke future mein bhi hmesha same hi rahe?
           </label>
 
           <textarea
             class="q-answer"
             id="q-answer-6"
-            name="Q6 - If you could describe our friendship in just a few words, what would you say?"
-            placeholder="Your final response..."
+            name="Q6 - Is there something about your life or personality you hope will always stay the same?"
+            placeholder="Something about yourself you hope time will never change..."
+            rows="3"
+            required
+          ></textarea>
+
+          <div class="q-step-footer">
+
+            <button
+              class="q-next"
+              type="button"
+            >
+              <span>Next</span>
+              <span aria-hidden="true">→</span>
+            </button>
+
+          </div>
+
+          <p class="q-hint" aria-live="polite">
+            ↳ Your answer is the key to the next stage.
+          </p>
+
+        </section>
+
+
+        <!-- Question 7 -->
+        <section
+          class="q-step"
+          data-step="6"
+          aria-labelledby="q-question-7"
+          hidden
+        >
+
+          <div class="q-step-meta">
+            <span>INPUT_07</span>
+            <span>OPEN_CHANNEL</span>
+          </div>
+
+          <label
+            class="q-question"
+            id="q-question-7"
+            for="q-answer-7"
+          >
+            What's a small thing that makes you really happy or means a lot to you, even if other people don't understand why?
+          </label>
+
+          <textarea
+            class="q-answer"
+            id="q-answer-7"
+            name="Q7 - What's a small thing that makes you really happy or means a lot to you, even if other people don't understand why?"
+            placeholder="It can be the smallest thing. What brings you that little bit of happiness?"
+            rows="3"
+            required
+          ></textarea>
+
+          <div class="q-step-footer">
+
+            <button
+              class="q-next"
+              type="button"
+            >
+              <span>Next</span>
+              <span aria-hidden="true">→</span>
+            </button>
+
+          </div>
+
+          <p class="q-hint" aria-live="polite">
+            ↳ Your answer is the key to the next stage.
+          </p>
+
+        </section>
+
+
+        <!-- Question 8 -->
+        <section
+          class="q-step"
+          data-step="7"
+          aria-labelledby="q-question-8"
+          hidden
+        >
+
+          <div class="q-step-meta">
+            <span>INPUT_08</span>
+            <span>FINAL_TRANSMISSION</span>
+          </div>
+
+          <label
+            class="q-question"
+            id="q-question-8"
+            for="q-answer-8"
+          >
+            When you're sad, stressed, or having a hard day, to tum kya chaho gi ke koi tumhare liye kya kare? Matlab aisa kya hai jis se tum behtar feel karo gi?
+          </label>
+
+          <textarea
+            class="q-answer"
+            id="q-answer-8"
+            name="Q8 - When you're sad, stressed, or having a hard day, what would you want someone to do to help you feel better?"
+            placeholder="What helps you feel a little lighter on the difficult days?"
             rows="3"
             required
           ></textarea>
@@ -475,43 +571,52 @@
 
       </form>
 
-<!-- Thank-you ending, revealed after successful submission -->
-<section class="q-thanks" id="q-thanks" aria-labelledby="q-thanks-title" hidden>
-  <div class="q-thanks__decoration" aria-hidden="true">
-    <span>✳</span>
-    <span>♡</span>
-    <span>✦</span>
-  </div>
 
-  <p class="q-thanks__eyebrow">
-    TRANSMISSION RECEIVED // THANK YOU
-  </p>
+      <!-- Thank-you ending, revealed after successful submission -->
+      <section
+        class="q-thanks"
+        id="q-thanks"
+        aria-labelledby="q-thanks-title"
+        hidden
+      >
 
-  <h2 id="q-thanks-title" class="q-thanks__title">
-    And that's a wrap<span>.</span>
-  </h2>
+        <div class="q-thanks__decoration" aria-hidden="true">
+          <span>✳</span>
+          <span>♡</span>
+          <span>✦</span>
+        </div>
 
-  <p class="q-thanks__message">
-    Thank you for answering all my little questions.
-    I know some were random, some were thoughtful,
-    and maybe one or two made you pause for a second.
-  </p>
+        <p class="q-thanks__eyebrow">
+          TRANSMISSION RECEIVED // THANK YOU
+        </p>
 
-  <p class="q-thanks__message">
-    But I genuinely wanted to hear your side of things.
-    Your words mean something to me, and I'm glad you
-    took a little time out of your day for this.
-  </p>
+        <h2 id="q-thanks-title" class="q-thanks__title">
+          And that's a wrap<span>.</span>
+        </h2>
 
-  <p class="q-thanks__note">
-    One last little thing is waiting for you.
-  </p>
+        <p class="q-thanks__message">
+          Thank you for answering all my little questions.
+          I know some were random, some were thoughtful,
+          and maybe one or two made you pause for a second.
+        </p>
 
-  <a class="q-ending-link" href="ending.html">
-    <span>One last little thing</span>
-    <span aria-hidden="true">↗</span>
-  </a>
-</section>
+        <p class="q-thanks__message">
+          But I genuinely wanted to hear your side of things.
+          Your words mean something to me, and I'm glad you
+          took a little time out of your day for this.
+        </p>
+
+        <p class="q-thanks__note">
+          One last little thing is waiting for you.
+        </p>
+
+        <a class="q-ending-link" href="ending.html">
+          <span>One last little thing</span>
+          <span aria-hidden="true">↗</span>
+        </a>
+
+      </section>
+
 
       <!-- Footer status -->
       <footer class="q-footer">
